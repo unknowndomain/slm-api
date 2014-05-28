@@ -12,10 +12,15 @@ module.exports = {
             if (req.query.card_id_hash) {
                 res.locals.User.findOne({where: {card_id_hashed: req.query.card_id_hash}}, function (err, member) {
                     if (member) {
-                        res.send("yes");
+                        if (member.is_active()) {
+                            res.status(200).send("1");
+                        }
+                        else {
+                            res.status(403).send("0");
+                        }
                     }
                     else {
-                        res.send("no");
+                        res.status(404).send("0");
                     }
                 });
             }
