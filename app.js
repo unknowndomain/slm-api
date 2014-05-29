@@ -24,7 +24,9 @@ module.exports = {
                     }
                 });
             }
-            res.status(400).send("No identity specified.");
+            else {
+                res.status(400).send("No identity specified.");
+            }
         });
         
         return app;
